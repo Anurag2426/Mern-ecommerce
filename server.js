@@ -8,6 +8,7 @@ import categoryRoutes from './routes/categoryRoutes.js'
 import productRoutes from "./routes/productRoutes.js";
 import path from 'path';
 import { fileURLToPath } from 'url';
+import build from './client/build';
 const app = express();
 
 // Configure environment variables
@@ -35,7 +36,7 @@ app.use('/api/v1/product',productRoutes)
 
 // rest api
 app.use('*',function(req,res){
-    app.use(express.static(path.join(__dirname, 'client/build')));
+    res.sendFile(path.join(__dirname,'./client/build/index.html'))
 })
 
 // rest api
