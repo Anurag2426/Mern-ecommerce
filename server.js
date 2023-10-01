@@ -18,15 +18,16 @@ dotenv.config();
 connectDB();
 
 // esmodule fix
-const __filename=fileURLToPath(import.meta.url)
-const __dirname=path.dirname(__filename);
+// Define __dirname and __filename
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname,'./client/build')))
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // Routes
 app.use('/api/v1/auth', authRoutes);
@@ -35,14 +36,14 @@ app.use('/api/v1/product',productRoutes)
 
 
 // rest api
-app.use('*',function(req,res){
-    res.sendFile(path.join(__dirname,'./client/build/index.html'))
-})
+app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
 
-// rest api
-app.get('/',(req,res)=>{
-    res.send("<h1>Welcome to ecommerce app</h1>")
-})
+// // rest api
+// app.get('/',(req,res)=>{
+//     res.send("<h1>Welcome to ecommerce app</h1>")
+// })
 
 const PORT = process.env.PORT || 8080;
 
