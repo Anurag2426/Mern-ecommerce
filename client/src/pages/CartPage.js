@@ -22,9 +22,9 @@ const CartPage = () => {
       cart?.forEach((item) => {
         total += item.price;
       });
-      return total.toLocaleString("en-US", {
+      return total.toLocaleString("en-IN", {
         style: "currency",
-        currency: "USD",
+        currency: "INR",
       });
     } catch (error) {
       console.error(error);
